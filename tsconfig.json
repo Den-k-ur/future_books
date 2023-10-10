@@ -23,7 +23,8 @@
     "alwaysStrict": true,
     "paths": {
       "base/*": ["/src/components/base/*"],
-      "environment/*": ["/src/components/environment/*"]
+      "environment/*": ["/src/components/environment/*"],
+      "api/*": ["/src/api*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],
