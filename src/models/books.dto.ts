@@ -4,6 +4,7 @@ export type BooksDTO = {
 };
 
 type BooksInfo = {
+  id: string;
   volumeInfo: {
     title: string;
     authors: string[];

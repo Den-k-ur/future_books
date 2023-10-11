@@ -24,7 +24,8 @@
     "paths": {
       "base/*": ["/src/components/base/*"],
       "environment/*": ["/src/components/environment/*"],
-      "api/*": ["/src/api*"]
+      "api/*": ["/src/api*"],
+      "sections/*": ["/src/components/sections/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],

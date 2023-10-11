@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 
 //MUI components
 import Box from '@mui/material/Box';
@@ -11,10 +11,15 @@ import { Header } from 'src/components/base/Header';
 //styles
 import { BoxStyles } from './styles';
 
-export const Layout: FC = () => {
+type LayoutProps = {
+  children?: ReactElement | ReactElement[] | string;
+};
+
+export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <Box sx={BoxStyles}>
       <Header />
+      {children}
     </Box>
   );
 };

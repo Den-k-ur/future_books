@@ -8,15 +8,33 @@ type searchParams = {
   subject: string;
   searchText: string;
   sort: string;
+  startIndex: number;
 };
 
 export const BooksServices = {
-  booksInfo: createAsyncThunk<BooksDTO, searchParams>(
+  getBooksInfo: createAsyncThunk<BooksDTO, Omit<searchParams, 'startIndex'>>(
     'books',
     async (values, { rejectWithValue }) => {
       try {
         const response = await api.get(
-          `${BASE_URL}key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&rderBy=${values.sort}`,
+          `${BASE_URL}key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&orderBy=${values.sort}&maxResults=30`,
+        );
+        return response.data;
+      } catch (err) {
+        const error = err as AxiosError;
+        if (!error.response) {
+          throw err;
+        }
+        return rejectWithValue(error.response);
+      }
+    },
+  ),
+  getMoreBooks: createAsyncThunk<BooksDTO, searchParams>(
+    'getMoreBooks',
+    async (values, { rejectWithValue }) => {
+      try {
+        const response = await api.get(
+          `${BASE_URL}key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&orderBy=${values.sort}&maxResults=30&startIndex=${values.startIndex}`,
         );
         return response.data;
       } catch (err) {
