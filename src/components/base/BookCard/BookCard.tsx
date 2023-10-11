@@ -1,30 +1,36 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React, { FC } from 'react';
-import { BooksInfoBlock, CardImageStyles, CardStyles, SubjectStyles } from './styles';
-import { Link } from 'react-router-dom';
+import {
+  AuthorsStyles,
+  BlankImageStyles,
+  BooksInfoBlock,
+  CardImageStyles,
+  CardStyles,
+  SubjectStyles,
+} from './styles';
 
 type BookCardProps = {
-  image?: string;
-  title?: string;
+  image: string;
+  title: string;
   authors: string[];
   subject?: string;
-  to: string;
+  onClick?: () => void;
 };
 
-export const BookCard: FC<BookCardProps> = ({ authors, image, subject, title, to }) => {
+export const BookCard: FC<BookCardProps> = ({ authors, image, subject, title, onClick }) => {
   return (
-    <Box sx={CardStyles}>
-      <Link to={to}>
-        <Box sx={CardImageStyles}>
-          <img src={image} />
-        </Box>
-      </Link>
+    <Box sx={CardStyles} onClick={onClick}>
+      <Box sx={CardImageStyles}>{image ? <img src={image} /> : <Box sx={BlankImageStyles} />}</Box>
       <Box sx={BooksInfoBlock}>
         <Typography sx={SubjectStyles}>{subject && subject}</Typography>
         <Typography>{title}</Typography>
 
-        {authors && <Typography variant="caption">{authors.join(', ')}</Typography>}
+        {authors && (
+          <Typography sx={AuthorsStyles} variant="caption">
+            {authors.join(', ')}
+          </Typography>
+        )}
       </Box>
     </Box>
   );

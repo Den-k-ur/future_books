@@ -16,10 +16,5 @@ type LayoutProps = {
 };
 
 export const Layout: FC<LayoutProps> = ({ children }) => {
-  return (
-    <Box sx={BoxStyles}>
-      <Header />
-      {children}
-    </Box>
-  );
+  return <Box sx={BoxStyles}>{children}</Box>;
 };

@@ -7,6 +7,7 @@ const initialState: BooksState = {
   error: '',
   hasError: false,
   isLoading: false,
+  detailBookInfo: null,
   isSuccess: false,
   searchText: '',
   filter: 'relevance',
@@ -21,7 +22,7 @@ const initialState: BooksState = {
   },
 };
 
-const { getBooksInfo, getMoreBooks } = BooksServices;
+const { getBooksInfo, getMoreBooks, getDetailBook } = BooksServices;
 
 const setDefaultValuesPending = (state: BooksState) => {
   state.isLoading = true;
@@ -60,6 +61,9 @@ export const BooksSlice = createSlice({
     setPage(state, payload) {
       state.page = payload.payload;
     },
+    setInitialStateDetailBookInfo(state) {
+      state.detailBookInfo = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getBooksInfo.pending, (state) => {
@@ -95,6 +99,23 @@ export const BooksSlice = createSlice({
     builder.addCase(getMoreBooks.rejected, (state, action) => {
       state.moreButtons.error = action.error as string;
       state.moreButtons.isLoading = false;
+    });
+    builder.addCase(getDetailBook.pending, (state) => {
+      setDefaultValuesPending(state);
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.error = null;
+    });
+    builder.addCase(getDetailBook.fulfilled, (state, action) => {
+      setDefaultValuesFilfilled(state);
+      state.detailBookInfo = action.payload;
+      state.isLoading = false;
+      state.isSuccess = true;
+    });
+    builder.addCase(getDetailBook.rejected, (state, action) => {
+      setDefaultValuesRejected(state);
+      state.error = action.error as string;
+      state.isLoading = false;
     });
   },
 });

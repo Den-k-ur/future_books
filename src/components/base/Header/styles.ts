@@ -4,7 +4,7 @@ export const HeaderStyles = {
   maxWidth: '100%',
   flex: '1',
   gap: '30px',
-  backgroundImage: 'url(bookBackground.jpg)',
+  backgroundImage: 'url(/bookBackground.jpg)',
   color: '#fff',
   flexDirection: 'column',
   width: '100%',

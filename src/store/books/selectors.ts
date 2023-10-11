@@ -24,3 +24,7 @@ export const books = createSelector(booksRoot, (data) => data?.items);
 
 export const moreBooksRoot = createSelector(root, (data) => data.moreButtons);
 export const moreBooksIsLoading = createSelector(moreBooksRoot, (data) => data.isLoading);
+
+export const detalBookRoot = createSelector(root, (data) => data.detailBookInfo);
+export const detailBookInfo = createSelector(detalBookRoot, (data) => data?.volumeInfo);
+export const detailBookId = createSelector(detalBookRoot, (data) => data?.id);

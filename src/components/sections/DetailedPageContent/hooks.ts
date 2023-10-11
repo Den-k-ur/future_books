@@ -1,30 +1,24 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
-import { booksSelectors } from 'src/store/books';
+import { useNavigate } from 'react-router';
+import { booksActions, booksSelectors } from 'src/store/books';
+import { useAppDispatch } from 'src/store/hooks';
 
 export const useDetailedPage = () => {
-  const books = useSelector(booksSelectors.books);
+  const dispatch = useAppDispatch();
+  const book = useSelector(booksSelectors.detailBookInfo);
   const navigate = useNavigate();
-  const { id } = useParams();
 
-  const currentBook = books.find((book) => book.id === id);
+  const authors = book?.authors?.join(', ');
+  const img = book?.imageLinks?.thumbnail;
+  const title = book?.title;
+  const categories = book?.categories;
+  const description = book?.description;
 
-  const authors = currentBook?.volumeInfo.authors?.join(', ');
-  const img = currentBook?.volumeInfo.imageLinks?.thumbnail;
-  const title = currentBook?.volumeInfo.title;
-  const categories = currentBook?.volumeInfo.categories;
-  const description = currentBook?.volumeInfo.description;
-
-  useEffect(() => {
-    if (books?.length === 0) {
-      navigate('/', { replace: true });
-    }
-  }, [books, navigate]);
-
-  const handleOnClick = () => {
+  const handleOnClick = useCallback(() => {
+    dispatch(booksActions.setInitialStateDetailBookInfo());
     navigate('/');
-  };
+  }, []);
 
   return {
     authors,

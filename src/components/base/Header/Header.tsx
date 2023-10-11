@@ -16,21 +16,27 @@ import { BOOKS_CATEGORIES, BOOKS_FILTERS } from './constants';
 import { useHeader } from './hooks';
 
 export const Header: FC = () => {
-  const { handleSearchBook, handleChangeFilter, handleChangeSearchText, handleChangeSubject } =
-    useHeader();
+  const {
+    handleSearchBook,
+    handleChangeFilter,
+    handleChangeSearchText,
+    handleChangeSubject,
+    handleKeyDownSearch,
+  } = useHeader();
 
   return (
     <Box sx={HeaderStyles}>
       <Typography variant="h3">Search for Books</Typography>
       <SearchBar
         onClick={handleSearchBook}
-        onChange={(e) => handleChangeSearchText(e.currentTarget.value)}
-        onKeyDown={(e) => e.key === 'Enter' && handleSearchBook()}
+        placeholder="Enter book title"
+        onChange={handleChangeSearchText}
+        onKeyDown={handleKeyDownSearch}
       />
       <Box sx={FiltersBlockStyles}>
         <Box sx={SelectWithTextStyles}>
           <Typography>Category: </Typography>
-          <FiltersSelect onChange={(e) => handleChangeSubject(e.target.value)} defaultValue="All">
+          <FiltersSelect onChange={handleChangeSubject} defaultValue="All">
             {BOOKS_CATEGORIES.map((category) => (
               <MenuItem key={category.id} value={category.category}>
                 {category.category}
@@ -40,10 +46,7 @@ export const Header: FC = () => {
         </Box>
         <Box sx={SelectWithTextStyles}>
           <Typography>Order by: </Typography>
-          <FiltersSelect
-            onChange={(e) => handleChangeFilter(e.target.value)}
-            defaultValue="relevance"
-          >
+          <FiltersSelect onChange={handleChangeFilter} defaultValue="relevance">
             {BOOKS_FILTERS.map((filter) => (
               <MenuItem key={filter.id} value={filter.filter}>
                 {filter.filter}
