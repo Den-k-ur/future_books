@@ -14,6 +14,7 @@ export const HeaderStyles = {
 export const FiltersBlockStyles = {
   display: 'flex',
   gap: '60px',
+  paddingBottom: '60px',
 };
 
 export const SelectWithTextStyles = {

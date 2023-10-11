@@ -8,6 +8,9 @@ const initialState: BooksState = {
   hasError: false,
   isLoading: false,
   isSuccess: false,
+  searchText: '',
+  filter: '',
+  subject: '',
 };
 
 const { booksInfo } = BooksServices;
@@ -36,7 +39,17 @@ const setDefaultValuesRejected = (state: BooksState, error = '') => {
 export const BooksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchText(state, payload) {
+      state.searchText = payload.payload;
+    },
+    setFilter(state, payload) {
+      state.filter = payload.payload;
+    },
+    setSubject(state, payload) {
+      state.subject = payload.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(booksInfo.pending, (state) => {
       setDefaultValuesPending(state);

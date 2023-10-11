@@ -1,10 +1,13 @@
 import React from 'react';
 import { Layout } from 'src/components/environment';
+import { MainPageContent } from 'src/components/sections/MainPageContent';
 
 function App() {
   return (
     <div className="App">
-      <Layout />
+      <Layout>
+        <MainPageContent />
+      </Layout>
     </div>
   );
 }

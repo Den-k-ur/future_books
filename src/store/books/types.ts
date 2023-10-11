@@ -6,4 +6,7 @@ export type BooksState = {
   isSuccess: boolean;
   isLoading: boolean;
   booksInfo: BooksDTO | null;
+  searchText: string;
+  filter: string;
+  subject: string;
 };

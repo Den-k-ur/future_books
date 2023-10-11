@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
 
 //MUI components
 import TextField from '@mui/material/TextField';
@@ -10,17 +10,21 @@ import { SearchBarStyles } from './styles';
 
 type SearchBarProps = {
   onClick?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 };
 
-export const SearchBar: FC<SearchBarProps> = () => {
+export const SearchBar: FC<SearchBarProps> = ({ onClick, onChange, onKeyDown }) => {
   return (
     <TextField
       sx={SearchBarStyles}
       placeholder="Введите название книги"
+      onChange={onChange}
+      onKeyDown={onKeyDown}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton>
+            <IconButton onClick={onClick}>
               <SearchIcon />
             </IconButton>
           </InputAdornment>

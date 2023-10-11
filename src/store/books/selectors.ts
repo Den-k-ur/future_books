@@ -16,4 +16,4 @@ export const booksRoot = createSelector(root, (data) => data.booksInfo);
 
 export const booksTotal = createSelector(booksRoot, (data) => data?.totalItems);
 
-export const title = createSelector(booksRoot, (data) => data?.items);
+export const books = createSelector(booksRoot, (data) => data?.items);

@@ -16,7 +16,7 @@ export const BooksServices = {
     async (values, { rejectWithValue }) => {
       try {
         const response = await api.get(
-          `${BASE_URL}key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&rderBy=${values.sort}`,
+          `${BASE_URL}key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&orderBy=${values.sort}`,
         );
         return response.data;
       } catch (err) {
