@@ -6,16 +6,19 @@ export const CardStyles = {
   width: '100%',
   border: '1px solid',
   gap: '20px',
+  cursor: 'pointer',
 };
 
 export const CardImageStyles = {
-  maxHeight: '200px',
-  height: '100%',
   '& img': {
     objectFit: 'fill',
-    height: '100%',
     width: '100%',
   },
+};
+
+export const BlankImageStyles = {
+  maxWidth: '200px',
+  maxHeigth: '200px',
 };
 
 export const SubjectStyles = {

@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import React, { FC } from 'react';
 import { useDetailedPage } from './hooks';
 import Typography from '@mui/material/Typography';
-import { DetailedPageContentContainer, ImageBlock, InfoBlock } from './styles';
+import { DetailedPageContentContainer, InfoBlock } from './styles';
 import Button from '@mui/material/Button';
 
 export const DetailedPageContent: FC = () => {
@@ -10,7 +10,7 @@ export const DetailedPageContent: FC = () => {
 
   return (
     <Box sx={DetailedPageContentContainer}>
-      <Box sx={ImageBlock}>
+      <Box>
         <img src={img} alt="" />
       </Box>
       <Box sx={InfoBlock}>

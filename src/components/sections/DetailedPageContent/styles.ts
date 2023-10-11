@@ -3,13 +3,6 @@ export const DetailedPageContentContainer = {
   gap: '40px',
 };
 
-export const ImageBlock = {
-  height: '100%',
-  '& img': {
-    height: '100%',
-  },
-};
-
 export const InfoBlock = {
   display: 'flex',
   flexDirection: 'column',

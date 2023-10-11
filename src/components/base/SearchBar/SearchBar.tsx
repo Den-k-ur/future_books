@@ -9,16 +9,17 @@ import IconButton from '@mui/material/IconButton';
 import { SearchBarStyles } from './styles';
 
 type SearchBarProps = {
+  placeholder: string;
   onClick?: () => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 };
 
-export const SearchBar: FC<SearchBarProps> = ({ onClick, onChange, onKeyDown }) => {
+export const SearchBar: FC<SearchBarProps> = ({ onClick, onChange, onKeyDown, placeholder }) => {
   return (
     <TextField
       sx={SearchBarStyles}
-      placeholder="Введите название книги"
+      placeholder={placeholder}
       onChange={onChange}
       onKeyDown={onKeyDown}
       InputProps={{

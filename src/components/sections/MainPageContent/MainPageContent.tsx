@@ -22,7 +22,7 @@ export const MainPageContent: FC = () => {
   const isLoading = useSelector(booksSelectors.isLoading);
   const moreBooksIsLoading = useSelector(booksSelectors.moreBooksIsLoading);
 
-  const { handleGetMoreBooks, possibleCount } = useMainPage();
+  const { handleGetMoreBooks, possibleCount, handleGetDetailInfo } = useMainPage();
 
   const booksTotal = useSelector(booksSelectors.booksTotal);
 
@@ -46,7 +46,7 @@ export const MainPageContent: FC = () => {
                   subject={book.volumeInfo.categories?.[0]}
                   title={book.volumeInfo.title}
                   key={id}
-                  to={`/book/${book.id}`}
+                  onClick={() => handleGetDetailInfo(book.id)}
                 />
               ))}
           </Box>

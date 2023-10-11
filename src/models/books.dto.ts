@@ -1,9 +1,9 @@
 export type BooksDTO = {
   totalItems: number;
-  items: BooksInfo[];
+  items: BookInfo[];
 };
 
-type BooksInfo = {
+export type BookInfo = {
   id: string;
   volumeInfo: {
     title: string;
