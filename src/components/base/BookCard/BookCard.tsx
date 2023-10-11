@@ -20,7 +20,7 @@ export const BookCard: FC<BookCardProps> = ({ authors, image, subject, title }) 
         <Typography sx={SubjectStyles}>{subject && subject}</Typography>
         <Typography>{title}</Typography>
 
-        {authors && <Typography>{authors.join(', ')}</Typography>}
+        {authors && <Typography variant="caption">{authors.join(', ')}</Typography>}
       </Box>
     </Box>
   );

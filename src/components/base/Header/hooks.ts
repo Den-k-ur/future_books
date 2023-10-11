@@ -1,28 +1,32 @@
 import { useCallback, useState } from 'react';
-import { BooksServices } from 'src/store/books';
+import { useSelector } from 'react-redux';
+import { BooksServices, booksActions, booksSelectors } from 'src/store/books';
 import { useAppDispatch } from 'src/store/hooks';
 
 export const useHeader = () => {
   const dispatch = useAppDispatch();
-  const [searchText, setSearchText] = useState('');
-  const [filter, setFilter] = useState('relevance');
-  const [subject, setSubject] = useState('');
+
+  const searchText = useSelector(booksSelectors.searchText);
+  const filter = useSelector(booksSelectors.filter);
+  const subject = useSelector(booksSelectors.subject);
 
   const handleChangeSearchText = useCallback((searchText: string) => {
-    setSearchText(searchText);
+    dispatch(booksActions.setSearchText(searchText));
   }, []);
 
   const handleChangeFilter = useCallback((filter: string) => {
-    setFilter(filter);
+    dispatch(booksActions.setFilter(filter));
   }, []);
   const handleChangeSubject = useCallback((subject: string) => {
     if (subject !== 'All') {
-      setSubject(subject);
-    } else setSubject('');
+      dispatch(booksActions.setSubject(subject));
+    } else dispatch(booksActions.setSubject(''));
   }, []);
 
   const handleSearchBook = useCallback(() => {
-    dispatch(BooksServices.booksInfo({ searchText: searchText, sort: filter, subject: subject }));
+    dispatch(
+      BooksServices.getBooksInfo({ searchText: searchText, sort: filter, subject: subject }),
+    );
   }, [searchText, filter, subject]);
 
   return {

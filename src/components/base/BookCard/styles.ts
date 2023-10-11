@@ -24,5 +24,6 @@ export const SubjectStyles = {
 
 export const BooksInfoBlock = {
   display: 'flex',
+  gap: '10px',
   flexDirection: 'column',
 };
