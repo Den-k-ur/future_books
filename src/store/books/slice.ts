@@ -7,7 +7,12 @@ const initialState: BooksState = {
   error: '',
   hasError: false,
   isLoading: false,
-  detailBookInfo: null,
+  detailBookInfo: {
+    data: null,
+    error: null,
+    isLoading: false,
+    isSuccess: false,
+  },
   isSuccess: false,
   searchText: '',
   filter: 'relevance',
@@ -62,7 +67,7 @@ export const BooksSlice = createSlice({
       state.page = payload.payload;
     },
     setInitialStateDetailBookInfo(state) {
-      state.detailBookInfo = null;
+      state.detailBookInfo.data = null;
     },
   },
   extraReducers: (builder) => {
@@ -102,20 +107,20 @@ export const BooksSlice = createSlice({
     });
     builder.addCase(getDetailBook.pending, (state) => {
       setDefaultValuesPending(state);
-      state.isLoading = true;
-      state.isSuccess = false;
-      state.error = null;
+      state.detailBookInfo.isLoading = true;
+      state.detailBookInfo.isSuccess = false;
+      state.detailBookInfo.error = null;
     });
     builder.addCase(getDetailBook.fulfilled, (state, action) => {
       setDefaultValuesFilfilled(state);
-      state.detailBookInfo = action.payload;
-      state.isLoading = false;
-      state.isSuccess = true;
+      state.detailBookInfo.data = action.payload;
+      state.detailBookInfo.isLoading = false;
+      state.detailBookInfo.isSuccess = true;
     });
     builder.addCase(getDetailBook.rejected, (state, action) => {
       setDefaultValuesRejected(state);
-      state.error = action.error as string;
-      state.isLoading = false;
+      state.detailBookInfo.error = action.error as string;
+      state.detailBookInfo.isLoading = false;
     });
   },
 });

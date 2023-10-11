@@ -6,7 +6,7 @@ export type BooksState = {
   isSuccess: boolean;
   isLoading: boolean;
   booksInfo: BooksDTO;
-  detailBookInfo: BookInfo | null;
+  detailBookInfo: LSDEState<BookInfo>;
   searchText: string;
   filter: string;
   subject: string;

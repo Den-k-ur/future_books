@@ -10,9 +10,10 @@ export const CardStyles = {
 };
 
 export const CardImageStyles = {
+  display: 'flex',
+  justifyContent: 'center',
   '& img': {
     objectFit: 'fill',
-    width: '100%',
   },
 };
 

@@ -47,7 +47,7 @@ export const useHeader = () => {
           BooksServices.getBooksInfo({
             searchText: searchText,
             sort: filter,
-            subject: event.target.value,
+            subject: '',
           }),
         );
       }
@@ -78,5 +78,8 @@ export const useHeader = () => {
     handleChangeSubject,
     handleSearchBook,
     handleKeyDownSearch,
+    searchText,
+    filter,
+    subject,
   };
 };

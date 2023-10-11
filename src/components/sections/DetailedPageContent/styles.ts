@@ -1,6 +1,7 @@
 export const DetailedPageContentContainer = {
   display: 'flex',
   gap: '40px',
+  flex: '1',
 };
 
 export const InfoBlock = {
@@ -21,4 +22,11 @@ export const SubjectStyles = {
 };
 export const AuthorsStyles = {
   color: '#2F4F4F',
+};
+
+export const LoaderContainer = {
+  display: 'flex',
+  flex: '1',
+  justifyContent: 'center',
+  alignItems: 'center',
 };

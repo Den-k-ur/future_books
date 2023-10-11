@@ -10,17 +10,25 @@ import { SearchBarStyles } from './styles';
 
 type SearchBarProps = {
   placeholder: string;
+  value: string;
   onClick?: () => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 };
 
-export const SearchBar: FC<SearchBarProps> = ({ onClick, onChange, onKeyDown, placeholder }) => {
+export const SearchBar: FC<SearchBarProps> = ({
+  onClick,
+  onChange,
+  onKeyDown,
+  placeholder,
+  value,
+}) => {
   return (
     <TextField
       sx={SearchBarStyles}
       placeholder={placeholder}
       onChange={onChange}
+      value={value}
       onKeyDown={onKeyDown}
       InputProps={{
         endAdornment: (

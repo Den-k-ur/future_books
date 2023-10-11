@@ -22,6 +22,9 @@ export const Header: FC = () => {
     handleChangeSearchText,
     handleChangeSubject,
     handleKeyDownSearch,
+    searchText,
+    filter,
+    subject,
   } = useHeader();
 
   return (
@@ -32,11 +35,12 @@ export const Header: FC = () => {
         placeholder="Enter book title"
         onChange={handleChangeSearchText}
         onKeyDown={handleKeyDownSearch}
+        value={searchText}
       />
       <Box sx={FiltersBlockStyles}>
         <Box sx={SelectWithTextStyles}>
           <Typography>Category: </Typography>
-          <FiltersSelect onChange={handleChangeSubject} defaultValue="All">
+          <FiltersSelect value={subject} onChange={handleChangeSubject} defaultValue="All">
             {BOOKS_CATEGORIES.map((category) => (
               <MenuItem key={category.id} value={category.category}>
                 {category.category}
@@ -46,7 +50,7 @@ export const Header: FC = () => {
         </Box>
         <Box sx={SelectWithTextStyles}>
           <Typography>Order by: </Typography>
-          <FiltersSelect onChange={handleChangeFilter} defaultValue="relevance">
+          <FiltersSelect value={filter} onChange={handleChangeFilter} defaultValue="relevance">
             {BOOKS_FILTERS.map((filter) => (
               <MenuItem key={filter.id} value={filter.filter}>
                 {filter.filter}
