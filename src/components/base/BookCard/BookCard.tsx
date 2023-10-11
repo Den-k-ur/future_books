@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React, { FC } from 'react';
 import {
+  AuthorsStyles,
   BlankImageStyles,
   BooksInfoBlock,
   CardImageStyles,
@@ -25,7 +26,11 @@ export const BookCard: FC<BookCardProps> = ({ authors, image, subject, title, on
         <Typography sx={SubjectStyles}>{subject && subject}</Typography>
         <Typography>{title}</Typography>
 
-        {authors && <Typography variant="caption">{authors.join(', ')}</Typography>}
+        {authors && (
+          <Typography sx={AuthorsStyles} variant="caption">
+            {authors.join(', ')}
+          </Typography>
+        )}
       </Box>
     </Box>
   );
