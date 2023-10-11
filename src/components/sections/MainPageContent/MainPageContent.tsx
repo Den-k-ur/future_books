@@ -46,6 +46,7 @@ export const MainPageContent: FC = () => {
                   subject={book.volumeInfo.categories?.[0]}
                   title={book.volumeInfo.title}
                   key={id}
+                  to={`/book/${book.id}`}
                 />
               ))}
           </Box>

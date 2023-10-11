@@ -9,7 +9,7 @@ type BooksInfo = {
     title: string;
     authors: string[];
     categories: string[];
-    desctiption: string;
+    description: string;
     imageLinks: {
       smallThumbnail: string;
       thumbnail: string;
