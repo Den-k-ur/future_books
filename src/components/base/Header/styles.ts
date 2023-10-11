@@ -8,7 +8,7 @@ export const HeaderStyles = {
   color: '#fff',
   flexDirection: 'column',
   width: '100%',
-  maxHeight: '400px',
+  maxHeight: '288px',
 };
 
 export const FiltersBlockStyles = {
