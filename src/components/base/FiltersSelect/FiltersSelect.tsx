@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ChangeEvent } from 'react';
+import React, { FC, ReactElement } from 'react';
 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 

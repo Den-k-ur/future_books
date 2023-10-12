@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
 import api from 'src/api';
 import { API_KEY, BASE_URL } from 'src/api/constants';
 import { BookInfo, BooksDTO } from 'src/models/books.dto';

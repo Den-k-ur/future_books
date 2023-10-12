@@ -1,10 +1,20 @@
 export const DetailedPageContentContainer = {
+  padding: '20px',
+};
+
+export const DetailedInfoBox = (theme: any) => ({
   display: 'flex',
   gap: '40px',
   flex: '1',
-  padding: '20px',
-  maxHeight: '100%',
-  height: '100%',
+  paddingTop: '20px',
+
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+  },
+});
+
+export const ImageBoxStyles = {
+  textAlign: 'center',
 };
 
 export const InfoBlock = {
