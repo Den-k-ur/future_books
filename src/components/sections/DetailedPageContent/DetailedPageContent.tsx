@@ -23,7 +23,7 @@ export const DetailedPageContent: FC = () => {
     <Box sx={DetailedPageContentContainer}>
       <LayoutWithLoader isLoading={isLoading}>
         <>
-          <DisplayError error={error as string} hasError={hasError} />
+          <DisplayError error={error} hasError={hasError} />
           <Box>
             <img src={img} alt="" />
           </Box>

@@ -93,8 +93,7 @@ export const BooksSlice = createSlice({
       state.moreButtons.error = null;
     });
     builder.addCase(getMoreBooks.fulfilled, (state, action) => {
-      state.booksInfo.items =
-        state.booksInfo.items && state.booksInfo.items.concat(action.payload.items);
+      state.booksInfo.items = state.booksInfo.items?.concat(action.payload.items);
       state.moreButtons.isLoading = false;
       state.moreButtons.isSuccess = true;
     });

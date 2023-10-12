@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 
 //styles
-import { FiltersBlockStyles, HeaderStyles, SelectWithTextStyles } from './styles';
+import { FiltersBlockStyles, HeaderStyles } from './styles';
 
 //components
 import { SearchBar } from 'src/components/base/SearchBar';

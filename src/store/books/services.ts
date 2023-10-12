@@ -25,11 +25,15 @@ export const BooksServices = {
   getBooksInfo: createAsyncThunk<BooksDTO, Omit<searchParams, 'startIndex'>>(
     'books',
     async (values, { rejectWithValue }) => {
-      try {
-        const response = await api.get(`${getBooksBaseAPI(values)}`);
-        return response.data;
-      } catch (err) {
-        return returnError(err, rejectWithValue);
+      if (values.searchText !== '') {
+        try {
+          const response = await api.get(`${getBooksBaseAPI(values)}`);
+          return response.data;
+        } catch (err) {
+          return returnError(err, rejectWithValue);
+        }
+      } else {
+        return { totalItems: 0, items: [] };
       }
     },
   ),
