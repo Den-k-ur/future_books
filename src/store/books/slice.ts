@@ -16,7 +16,7 @@ const initialState: BooksState = {
   isSuccess: false,
   searchText: '',
   filter: 'relevance',
-  subject: '',
+  subject: 'All',
   maxResults: 30,
   page: 0,
   moreButtons: {

@@ -32,25 +32,14 @@ export const useHeader = () => {
   );
   const handleChangeSubject = useCallback(
     (event: SelectChangeEvent) => {
-      if (event.target.value !== 'All') {
-        dispatch(booksActions.setSubject(event.target.value));
-        dispatch(
-          BooksServices.getBooksInfo({
-            searchText: searchText,
-            sort: filter,
-            subject: event.target.value,
-          }),
-        );
-      } else {
-        dispatch(booksActions.setSubject(''));
-        dispatch(
-          BooksServices.getBooksInfo({
-            searchText: searchText,
-            sort: filter,
-            subject: '',
-          }),
-        );
-      }
+      dispatch(booksActions.setSubject(event.target.value));
+      dispatch(
+        BooksServices.getBooksInfo({
+          searchText: searchText,
+          sort: filter,
+          subject: event.target.value,
+        }),
+      );
     },
     [searchText, filter],
   );
