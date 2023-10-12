@@ -1,3 +1,4 @@
+import NotFound from 'src/pages/notFound';
 import DetailedBookPage from '../pages/detailedBookPage';
 import MainPage from 'src/pages/main';
 
@@ -18,5 +19,10 @@ export const ROUTERS = [
     url: PATHS.BOOKS + PATHS.BOOKS_DETAIL,
     Element: DetailedBookPage,
     id: '001',
+  },
+  {
+    url: PATHS.PAGE_404,
+    Element: NotFound,
+    id: '002',
   },
 ];
