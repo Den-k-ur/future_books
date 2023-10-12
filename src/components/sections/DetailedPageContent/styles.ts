@@ -12,10 +12,6 @@ export const InfoBlock = {
   gap: '20px',
 };
 
-export const ButtonStyle = {
-  maxWidth: '200px',
-};
-
 export const SubjectStyles = {
   fontSize: '12px',
   color: '#808080',

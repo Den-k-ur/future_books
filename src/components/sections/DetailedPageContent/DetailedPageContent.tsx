@@ -6,19 +6,18 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import {
   AuthorsStyles,
-  ButtonStyle,
   DetailedPageContentContainer,
   InfoBlock,
   LoaderContainer,
   SubjectStyles,
 } from './styles';
-import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
 import { booksSelectors } from 'src/store/books';
 import CircularProgress from '@mui/material/CircularProgress';
+import { BackButton } from 'src/components/base/BackButton';
 
 export const DetailedPageContent: FC = () => {
-  const { authors, categories, description, img, title, handleOnClick } = useDetailedPage();
+  const { authors, categories, description, img, title } = useDetailedPage();
 
   const isLoading = useSelector(booksSelectors.detailBookIsLoading);
 
@@ -42,9 +41,7 @@ export const DetailedPageContent: FC = () => {
               {authors}
             </Typography>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{description}</ReactMarkdown>
-            <Button sx={ButtonStyle} onClick={handleOnClick} variant="contained">
-              Back
-            </Button>
+            <BackButton />
           </Box>
         </>
       )}
