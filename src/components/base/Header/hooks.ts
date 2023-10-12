@@ -20,27 +20,37 @@ export const useHeader = () => {
 
   const handleChangeFilter = useCallback(
     (event: SelectChangeEvent) => {
-      dispatch(booksActions.setFilter(event.target.value));
-      dispatch(
-        BooksServices.getBooksInfo({
-          searchText: searchText,
-          sort: event.target.value,
-          subject: subject,
-        }),
-      );
+      if (searchText === '' && subject === 'All') {
+        dispatch(booksActions.setFilter(event.target.value));
+        dispatch(booksActions.setInitialStateBookInfo);
+      } else {
+        dispatch(booksActions.setFilter(event.target.value));
+        dispatch(
+          BooksServices.getBooksInfo({
+            searchText: searchText,
+            sort: event.target.value,
+            subject: subject,
+          }),
+        );
+      }
     },
     [searchText, subject],
   );
   const handleChangeSubject = useCallback(
     (event: SelectChangeEvent) => {
-      dispatch(booksActions.setSubject(event.target.value));
-      dispatch(
-        BooksServices.getBooksInfo({
-          searchText: searchText,
-          sort: filter,
-          subject: event.target.value,
-        }),
-      );
+      if (searchText === '' && subject === 'All') {
+        dispatch(booksActions.setSubject(event.target.value));
+        dispatch(booksActions.setInitialStateBookInfo);
+      } else {
+        dispatch(booksActions.setSubject(event.target.value));
+        dispatch(
+          BooksServices.getBooksInfo({
+            searchText: searchText,
+            sort: filter,
+            subject: event.target.value,
+          }),
+        );
+      }
     },
     [searchText, filter],
   );
@@ -48,18 +58,26 @@ export const useHeader = () => {
   const handleKeyDownSearch = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
-        dispatch(
-          BooksServices.getBooksInfo({ searchText: searchText, sort: filter, subject: subject }),
-        );
+        if (searchText === '') {
+          dispatch(booksActions.setInitialStateBookInfo);
+        } else {
+          dispatch(
+            BooksServices.getBooksInfo({ searchText: searchText, sort: filter, subject: subject }),
+          );
+        }
       }
     },
     [searchText, filter, subject],
   );
 
   const handleSearchBook = useCallback(() => {
-    dispatch(
-      BooksServices.getBooksInfo({ searchText: searchText, sort: filter, subject: subject }),
-    );
+    if (searchText === '') {
+      dispatch(booksActions.setInitialStateBookInfo);
+    } else {
+      dispatch(
+        BooksServices.getBooksInfo({ searchText: searchText, sort: filter, subject: subject }),
+      );
+    }
   }, [searchText, filter, subject]);
 
   const selectValues = [

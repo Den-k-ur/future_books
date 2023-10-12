@@ -2,6 +2,9 @@ export const DetailedPageContentContainer = {
   display: 'flex',
   gap: '40px',
   flex: '1',
+  padding: '20px',
+  maxHeight: '100%',
+  height: '100%',
 };
 
 export const InfoBlock = {

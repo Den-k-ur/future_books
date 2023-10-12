@@ -8,8 +8,8 @@ import { AuthorsStyles, DetailedPageContentContainer, InfoBlock, SubjectStyles }
 import { useSelector } from 'react-redux';
 import { booksSelectors } from 'src/store/books';
 import { BackToMainButton } from 'src/components/base/BackToMainButton';
-import { AlertError } from 'src/components/base/AlertError';
-import { Loader } from 'src/components/base/Loader';
+import { LayoutWithLoader } from 'src/components/environment/LayoutWithLoader';
+import { DisplayError } from 'src/components/base/DisplayError';
 
 export const DetailedPageContent: FC = () => {
   const { authors, categories, description, img, title } = useDetailedPage();
@@ -21,11 +21,9 @@ export const DetailedPageContent: FC = () => {
 
   return (
     <Box sx={DetailedPageContentContainer}>
-      {isLoading ? (
-        <Loader />
-      ) : (
+      <LayoutWithLoader isLoading={isLoading}>
         <>
-          {hasError && <AlertError severity="error">{error}</AlertError>}
+          <DisplayError error={error as string} hasError={hasError} />
           <Box>
             <img src={img} alt="" />
           </Box>
@@ -41,7 +39,7 @@ export const DetailedPageContent: FC = () => {
             <BackToMainButton />
           </Box>
         </>
-      )}
+      </LayoutWithLoader>
     </Box>
   );
 };

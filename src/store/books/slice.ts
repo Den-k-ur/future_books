@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BooksServices } from './services';
 import { BooksState } from './types';
+import { BookInfo, BooksDTO } from 'src/models/books.dto';
 
 const initialState: BooksState = {
   booksInfo: { items: [], totalItems: 0 },
@@ -44,13 +45,6 @@ const setDefaultValuesFilfilled = (state: BooksState) => {
   state.isSuccess = true;
 };
 
-const setDefaultValuesRejected = (state: BooksState, error = '') => {
-  state.isLoading = false;
-  state.hasError = true;
-  state.error = error;
-  state.isSuccess = false;
-};
-
 export const BooksSlice = createSlice({
   name: 'books',
   initialState,
@@ -70,6 +64,9 @@ export const BooksSlice = createSlice({
     setInitialStateDetailBookInfo(state) {
       state.detailBookInfo.data = null;
     },
+    setInitialStateBookInfo(state) {
+      state.booksInfo = { items: [], totalItems: 0 };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getBooksInfo.pending, (state) => {
@@ -80,7 +77,7 @@ export const BooksSlice = createSlice({
     });
     builder.addCase(getBooksInfo.fulfilled, (state, action) => {
       setDefaultValuesFilfilled(state);
-      state.booksInfo = action.payload;
+      state.booksInfo = action.payload.items ? action.payload : { totalItems: 0, items: [] };
       state.isLoading = false;
       state.isSuccess = true;
     });
