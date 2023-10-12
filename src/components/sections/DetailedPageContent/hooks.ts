@@ -11,7 +11,6 @@ export const useDetailedPage = () => {
 
   const { id } = useParams();
   useEffect(() => {
-    console.log(book);
     if (!book) {
       dispatch(BooksServices.getDetailBook({ id: id as string }));
     }

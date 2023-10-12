@@ -96,10 +96,8 @@ export const BooksSlice = createSlice({
       state.moreButtons.error = null;
     });
     builder.addCase(getMoreBooks.fulfilled, (state, action) => {
-      state.booksInfo.items = state.booksInfo.items && [
-        ...state.booksInfo.items,
-        ...action.payload.items,
-      ];
+      state.booksInfo.items =
+        state.booksInfo.items && state.booksInfo.items.concat(action.payload.items);
       state.moreButtons.isLoading = false;
       state.moreButtons.isSuccess = true;
     });
@@ -108,20 +106,17 @@ export const BooksSlice = createSlice({
       state.moreButtons.isLoading = false;
     });
     builder.addCase(getDetailBook.pending, (state) => {
-      setDefaultValuesPending(state);
       state.detailBookInfo.isLoading = true;
       state.detailBookInfo.isSuccess = false;
       state.detailBookInfo.error = null;
       state.detailBookInfo.isError = false;
     });
     builder.addCase(getDetailBook.fulfilled, (state, action) => {
-      setDefaultValuesFilfilled(state);
       state.detailBookInfo.data = action.payload;
       state.detailBookInfo.isLoading = false;
       state.detailBookInfo.isSuccess = true;
     });
     builder.addCase(getDetailBook.rejected, (state, action) => {
-      setDefaultValuesRejected(state);
       state.detailBookInfo.isError = true;
       state.detailBookInfo.error = action.payload as string;
       state.detailBookInfo.isLoading = false;

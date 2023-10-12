@@ -1,14 +1,17 @@
+import { useSelector } from 'react-redux';
+import { booksSelectors } from 'src/store/books';
+
 export const BOOKS_CATEGORIES = [
-  { id: '1', category: 'All' },
-  { id: '2', category: 'art' },
-  { id: '3', category: 'biography' },
-  { id: '4', category: 'computers' },
-  { id: '5', category: 'history' },
-  { id: '6', category: 'medical' },
-  { id: '7', category: 'poetry' },
+  { id: '001', value: 'All' },
+  { id: '002', value: 'art' },
+  { id: '003', value: 'biography' },
+  { id: '004', value: 'computers' },
+  { id: '005', value: 'history' },
+  { id: '006', value: 'medical' },
+  { id: '007', value: 'poetry' },
 ];
 
 export const BOOKS_FILTERS = [
-  { id: '1', filter: 'relevance' },
-  { id: '2', filter: 'newest' },
+  { id: '001', value: 'relevance' },
+  { id: '002', value: 'newest' },
 ];

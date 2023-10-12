@@ -19,10 +19,3 @@ export const SubjectStyles = {
 export const AuthorsStyles = {
   color: '#2F4F4F',
 };
-
-export const LoaderContainer = {
-  display: 'flex',
-  flex: '1',
-  justifyContent: 'center',
-  alignItems: 'center',
-};

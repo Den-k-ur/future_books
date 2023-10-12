@@ -14,7 +14,6 @@ api.interceptors.response.use(
     if (error.response.status === 503 && globalRouter.navigate) {
       globalRouter.navigate('/404');
     }
-    console.log(error);
     return Promise.reject(error);
   },
 );

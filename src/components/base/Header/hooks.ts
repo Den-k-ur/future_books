@@ -3,6 +3,7 @@ import { ChangeEvent, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { BooksServices, booksActions, booksSelectors } from 'src/store/books';
 import { useAppDispatch } from 'src/store/hooks';
+import { BOOKS_CATEGORIES, BOOKS_FILTERS } from './constants';
 
 export const useHeader = () => {
   const dispatch = useAppDispatch();
@@ -61,6 +62,25 @@ export const useHeader = () => {
     );
   }, [searchText, filter, subject]);
 
+  const selectValues = [
+    {
+      id: '001',
+      selectItem: BOOKS_CATEGORIES,
+      value: subject,
+      name: 'Category:',
+      onChange: handleChangeSubject,
+      defaultValue: 'All',
+    },
+    {
+      id: '002',
+      selectItem: BOOKS_FILTERS,
+      value: filter,
+      name: 'Order by:',
+      onChange: handleChangeFilter,
+      defaultValue: 'relevance',
+    },
+  ];
+
   return {
     handleChangeSearchText,
     handleChangeFilter,
@@ -70,5 +90,6 @@ export const useHeader = () => {
     searchText,
     filter,
     subject,
+    selectValues,
   };
 };
