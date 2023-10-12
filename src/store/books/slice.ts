@@ -12,6 +12,7 @@ const initialState: BooksState = {
     error: null,
     isLoading: false,
     isSuccess: false,
+    isError: false,
   },
   isSuccess: false,
   searchText: '',
@@ -110,6 +111,7 @@ export const BooksSlice = createSlice({
       state.detailBookInfo.isLoading = true;
       state.detailBookInfo.isSuccess = false;
       state.detailBookInfo.error = null;
+      state.detailBookInfo.isError = false;
     });
     builder.addCase(getDetailBook.fulfilled, (state, action) => {
       setDefaultValuesFilfilled(state);
@@ -119,6 +121,7 @@ export const BooksSlice = createSlice({
     });
     builder.addCase(getDetailBook.rejected, (state, action) => {
       setDefaultValuesRejected(state);
+      state.detailBookInfo.isError = true;
       state.detailBookInfo.error = action.error as string;
       state.detailBookInfo.isLoading = false;
     });
