@@ -14,11 +14,11 @@ export const useMainPage = () => {
 
   const startIndex = useMemo(() => {
     return (currentPage + 1) * MAX_RESULTS;
-  }, [currentPage, MAX_RESULTS]);
+  }, [currentPage]);
 
   const possibleCount = useMemo(() => {
     return currentPage * MAX_RESULTS;
-  }, [currentPage, MAX_RESULTS]);
+  }, [currentPage]);
 
   const handleGetMoreBooks = useCallback(() => {
     dispatch(

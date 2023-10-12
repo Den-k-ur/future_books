@@ -40,25 +40,26 @@ export const MainPageContent: FC = () => {
             <Typography variant="h5">Total found: {booksTotal}</Typography>
           </Box>
           <DisplayError error={error as string} hasError={hasError} />
-          <Box sx={CardsContainerStyles}>
-            {books.length > 0 &&
-              books.map(({ volumeInfo: { authors, categories, imageLinks, title }, id }) => (
-                <BookCard
-                  authors={authors}
-                  image={imageLinks?.thumbnail}
-                  subject={categories?.[0]}
-                  title={title}
-                  key={id}
-                  id={id}
-                />
-              ))}
-          </Box>
           {books.length > 0 && (
-            <LoadButton
-              disabled={moreBooksIsLoading || booksTotal <= possibleCount}
-              isLoading={moreBooksIsLoading}
-              onclick={handleGetMoreBooks}
-            />
+            <>
+              <Box sx={CardsContainerStyles}>
+                {books.map(({ volumeInfo: { authors, categories, imageLinks, title }, id }) => (
+                  <BookCard
+                    authors={authors}
+                    image={imageLinks?.thumbnail}
+                    subject={categories?.[0]}
+                    title={title}
+                    key={id}
+                    id={id}
+                  />
+                ))}
+              </Box>
+              <LoadButton
+                disabled={moreBooksIsLoading || booksTotal <= possibleCount}
+                isLoading={moreBooksIsLoading}
+                onclick={handleGetMoreBooks}
+              />
+            </>
           )}
         </>
       </LayoutWithLoader>

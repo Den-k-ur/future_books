@@ -3,7 +3,7 @@ import { AlertError } from 'src/components/base/AlertError';
 
 type AlertErrorProps = {
   hasError: boolean;
-  error: string;
+  error: Nullable<string>;
 };
 
 export const DisplayError: FC<AlertErrorProps> = ({ hasError, error }) => {
