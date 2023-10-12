@@ -8,14 +8,19 @@ export const HeaderStyles = {
   color: '#fff',
   flexDirection: 'column',
   width: '100%',
-  maxHeight: '288px',
+  padding: '20px',
+  textAlign: 'center',
 };
 
-export const FiltersBlockStyles = {
+export const FiltersBlockStyles = (theme: any) => ({
   display: 'flex',
   gap: '60px',
-  paddingBottom: '60px',
-};
+
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    gap: '20px',
+  },
+});
 
 export const SelectWithTextStyles = {
   display: 'flex',

@@ -1,6 +1,3 @@
-import { useSelector } from 'react-redux';
-import { booksSelectors } from 'src/store/books';
-
 export const BOOKS_CATEGORIES = [
   { id: '001', value: 'All' },
   { id: '002', value: 'art' },

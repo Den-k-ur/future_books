@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BooksServices } from './services';
 import { BooksState } from './types';
-import { BookInfo, BooksDTO } from 'src/models/books.dto';
 
 const initialState: BooksState = {
   booksInfo: { items: [], totalItems: 0 },

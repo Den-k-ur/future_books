@@ -1,46 +1,17 @@
-# Getting Started with Create React App
+# Future_books
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Запуск приложения
 
-## Available Scripts
+Для запуска приложения используйте `npm run dev`
+Откройте [http://localhost:3000](http://localhost:3000) в бразуре.
 
-In the project directory, you can run:
+### Используемые библиотеки
 
-### `npm start`
+Для стилизации компонентов используется [MaterialUI](https://mui.com/material-ui/).
+Для работы с состояниями использовался [Redux](https://redux.js.org/) и [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Описание поедения
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Если поле ввода пустое, то запросы на получение списка книг не отправляются. Как только в поле появляются символы, то начинают работать фильтры и поиск.
+При переходе с детальной информации назад на главный экран, выбранные и введённые занчения сохраняются.
+Поиск есть только на главной странице.

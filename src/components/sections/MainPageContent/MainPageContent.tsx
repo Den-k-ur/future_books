@@ -4,21 +4,13 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { BookCard } from 'src/components/base/BookCard';
 import { booksSelectors } from 'src/store/books';
-import {
-  ButtonContainer,
-  ButtonStyles,
-  CardsContainerStyles,
-  MainPageContainer,
-  TotalText,
-} from './styles';
-import Button from '@mui/material/Button';
+import { CardsContainerStyles, MainPageContainer, TotalText } from './styles';
 import { useMainPage } from './hooks';
 import Typography from '@mui/material/Typography';
-import { AlertError } from 'src/components/base/AlertError';
-import { Loader } from 'src/components/base/Loader';
 import { DisplayError } from 'src/components/base/DisplayError';
 import { LayoutWithLoader } from 'src/components/environment/LayoutWithLoader';
 import { LoadButton } from 'src/components/base/LoadButton';
+import Grid from '@mui/material/Grid';
 
 export const MainPageContent: FC = () => {
   const books = useSelector(booksSelectors.books);
@@ -43,16 +35,20 @@ export const MainPageContent: FC = () => {
           {books.length > 0 && (
             <>
               <Box sx={CardsContainerStyles}>
-                {books.map(({ volumeInfo: { authors, categories, imageLinks, title }, id }) => (
-                  <BookCard
-                    authors={authors}
-                    image={imageLinks?.thumbnail}
-                    subject={categories?.[0]}
-                    title={title}
-                    key={id}
-                    id={id}
-                  />
-                ))}
+                <Grid container spacing={2}>
+                  {books.map(({ volumeInfo: { authors, categories, imageLinks, title }, id }) => (
+                    <Grid item xs={6} sm={4} md={3} lg={2} key={id}>
+                      <BookCard
+                        authors={authors}
+                        image={imageLinks?.thumbnail}
+                        subject={categories?.[0]}
+                        title={title}
+                        key={id}
+                        id={id}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </Box>
               <LoadButton
                 disabled={moreBooksIsLoading || booksTotal <= possibleCount}

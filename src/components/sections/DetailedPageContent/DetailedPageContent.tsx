@@ -4,7 +4,14 @@ import { useDetailedPage } from './hooks';
 import Typography from '@mui/material/Typography';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { AuthorsStyles, DetailedPageContentContainer, InfoBlock, SubjectStyles } from './styles';
+import {
+  AuthorsStyles,
+  DetailedInfoBox,
+  DetailedPageContentContainer,
+  ImageBoxStyles,
+  InfoBlock,
+  SubjectStyles,
+} from './styles';
 import { useSelector } from 'react-redux';
 import { booksSelectors } from 'src/store/books';
 import { BackToMainButton } from 'src/components/base/BackToMainButton';
@@ -22,9 +29,10 @@ export const DetailedPageContent: FC = () => {
   return (
     <Box sx={DetailedPageContentContainer}>
       <LayoutWithLoader isLoading={isLoading}>
-        <>
+        <BackToMainButton />
+        <Box sx={DetailedInfoBox}>
           <DisplayError error={error} hasError={hasError} />
-          <Box>
+          <Box sx={ImageBoxStyles}>
             <img src={img} alt="" />
           </Box>
           <Box sx={InfoBlock}>
@@ -36,9 +44,8 @@ export const DetailedPageContent: FC = () => {
               {authors}
             </Typography>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{description}</ReactMarkdown>
-            <BackToMainButton />
           </Box>
-        </>
+        </Box>
       </LayoutWithLoader>
     </Box>
   );
