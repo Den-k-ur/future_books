@@ -39,7 +39,7 @@ export const MainPageContent: FC = () => {
           <Box sx={TotalText}>
             <Typography variant="h5">Total found: {booksTotal}</Typography>
           </Box>
-          <DisplayError error={error as string} hasError={hasError} />
+          <DisplayError error={error} hasError={hasError} />
           {books.length > 0 && (
             <>
               <Box sx={CardsContainerStyles}>
