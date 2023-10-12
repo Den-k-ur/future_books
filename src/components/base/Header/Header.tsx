@@ -10,21 +10,17 @@ import { FiltersBlockStyles, HeaderStyles, SelectWithTextStyles } from './styles
 
 //components
 import { SearchBar } from 'src/components/base/SearchBar';
-import { FiltersSelect } from 'src/components/base/FiltersSelect';
 
-import { BOOKS_CATEGORIES, BOOKS_FILTERS } from './constants';
 import { useHeader } from './hooks';
+import { FiltersBlock } from '../FiltersBlock';
 
 export const Header: FC = () => {
   const {
     handleSearchBook,
-    handleChangeFilter,
     handleChangeSearchText,
-    handleChangeSubject,
     handleKeyDownSearch,
     searchText,
-    filter,
-    subject,
+    selectValues,
   } = useHeader();
 
   return (
@@ -38,26 +34,16 @@ export const Header: FC = () => {
         value={searchText}
       />
       <Box sx={FiltersBlockStyles}>
-        <Box sx={SelectWithTextStyles}>
-          <Typography>Category: </Typography>
-          <FiltersSelect value={subject} onChange={handleChangeSubject} defaultValue="All">
-            {BOOKS_CATEGORIES.map((category) => (
-              <MenuItem key={category.id} value={category.category}>
-                {category.category}
-              </MenuItem>
-            ))}
-          </FiltersSelect>
-        </Box>
-        <Box sx={SelectWithTextStyles}>
-          <Typography>Order by: </Typography>
-          <FiltersSelect value={filter} onChange={handleChangeFilter} defaultValue="relevance">
-            {BOOKS_FILTERS.map((filter) => (
-              <MenuItem key={filter.id} value={filter.filter}>
-                {filter.filter}
-              </MenuItem>
-            ))}
-          </FiltersSelect>
-        </Box>
+        {selectValues.map((value) => (
+          <FiltersBlock
+            onChange={value.onChange}
+            name={value.name}
+            selectItem={value.selectItem}
+            value={value.value}
+            key={value.id}
+            defaultValue={value.defaultValue}
+          />
+        ))}
       </Box>
     </Box>
   );

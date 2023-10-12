@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BooksServices } from './services';
 import { BooksState } from './types';
+import { BookInfo, BooksDTO } from 'src/models/books.dto';
 
 const initialState: BooksState = {
   booksInfo: { items: [], totalItems: 0 },
@@ -44,13 +45,6 @@ const setDefaultValuesFilfilled = (state: BooksState) => {
   state.isSuccess = true;
 };
 
-const setDefaultValuesRejected = (state: BooksState, error = '') => {
-  state.isLoading = false;
-  state.hasError = true;
-  state.error = error;
-  state.isSuccess = false;
-};
-
 export const BooksSlice = createSlice({
   name: 'books',
   initialState,
@@ -70,6 +64,9 @@ export const BooksSlice = createSlice({
     setInitialStateDetailBookInfo(state) {
       state.detailBookInfo.data = null;
     },
+    setInitialStateBookInfo(state) {
+      state.booksInfo = { items: [], totalItems: 0 };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getBooksInfo.pending, (state) => {
@@ -80,7 +77,7 @@ export const BooksSlice = createSlice({
     });
     builder.addCase(getBooksInfo.fulfilled, (state, action) => {
       setDefaultValuesFilfilled(state);
-      state.booksInfo = action.payload;
+      state.booksInfo = action.payload.items ? action.payload : { totalItems: 0, items: [] };
       state.isLoading = false;
       state.isSuccess = true;
     });
@@ -96,10 +93,8 @@ export const BooksSlice = createSlice({
       state.moreButtons.error = null;
     });
     builder.addCase(getMoreBooks.fulfilled, (state, action) => {
-      state.booksInfo.items = state.booksInfo.items && [
-        ...state.booksInfo.items,
-        ...action.payload.items,
-      ];
+      state.booksInfo.items =
+        state.booksInfo.items && state.booksInfo.items.concat(action.payload.items);
       state.moreButtons.isLoading = false;
       state.moreButtons.isSuccess = true;
     });
@@ -108,20 +103,17 @@ export const BooksSlice = createSlice({
       state.moreButtons.isLoading = false;
     });
     builder.addCase(getDetailBook.pending, (state) => {
-      setDefaultValuesPending(state);
       state.detailBookInfo.isLoading = true;
       state.detailBookInfo.isSuccess = false;
       state.detailBookInfo.error = null;
       state.detailBookInfo.isError = false;
     });
     builder.addCase(getDetailBook.fulfilled, (state, action) => {
-      setDefaultValuesFilfilled(state);
       state.detailBookInfo.data = action.payload;
       state.detailBookInfo.isLoading = false;
       state.detailBookInfo.isSuccess = true;
     });
     builder.addCase(getDetailBook.rejected, (state, action) => {
-      setDefaultValuesRejected(state);
       state.detailBookInfo.isError = true;
       state.detailBookInfo.error = action.payload as string;
       state.detailBookInfo.isLoading = false;

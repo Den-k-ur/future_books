@@ -16,15 +16,17 @@ type searchDetailBook = {
   id: string;
 };
 
+const getBooksBaseAPI = (values: Omit<searchParams, 'startIndex'>) => {
+  const sub = values.subject && values.subject !== 'All' ? `+subject:${values.subject}` : '';
+  return `${BASE_URL}?key=${API_KEY}&q=${values.searchText}${sub}&orderBy=${values.sort}&maxResults=30`;
+};
+
 export const BooksServices = {
   getBooksInfo: createAsyncThunk<BooksDTO, Omit<searchParams, 'startIndex'>>(
     'books',
     async (values, { rejectWithValue }) => {
-      const sub = values.subject && values.subject !== 'All' ? `+subject:${values.subject}` : '';
       try {
-        const response = await api.get(
-          `${BASE_URL}?key=${API_KEY}&q=${values.searchText}${sub}&orderBy=${values.sort}&maxResults=30`,
-        );
+        const response = await api.get(`${getBooksBaseAPI(values)}`);
         return response.data;
       } catch (err) {
         return returnError(err, rejectWithValue);
@@ -34,10 +36,9 @@ export const BooksServices = {
   getMoreBooks: createAsyncThunk<BooksDTO, searchParams>(
     'getMoreBooks',
     async (values, { rejectWithValue }) => {
-      const sub = values.subject && values.subject !== 'All' ? `+subject:${values.subject}` : '';
       try {
         const response = await api.get(
-          `${BASE_URL}?key=${API_KEY}&q=${values.searchText}${sub}&orderBy=${values.sort}&maxResults=30&startIndex=${values.startIndex}`,
+          `${getBooksBaseAPI(values)}&startIndex=${values.startIndex}`,
         );
         return response.data;
       } catch (err) {

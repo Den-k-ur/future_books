@@ -23,13 +23,6 @@ export const ButtonContainer = {
   justifyContent: 'center',
 };
 
-export const LoaderContainer = {
-  display: 'flex',
-  flex: '1',
-  alignSelf: 'center',
-  alignItems: 'center',
-};
-
 export const TotalText = {
   display: 'flex',
   justifyContent: 'center',

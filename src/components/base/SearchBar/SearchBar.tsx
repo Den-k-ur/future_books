@@ -11,9 +11,9 @@ import { SearchBarStyles } from './styles';
 type SearchBarProps = {
   placeholder: string;
   value: string;
-  onClick?: () => void;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onClick: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
 };
 
 export const SearchBar: FC<SearchBarProps> = ({

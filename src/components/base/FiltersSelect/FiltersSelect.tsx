@@ -8,7 +8,7 @@ type FiltersProps = {
   children: ReactElement | ReactElement[] | string;
   defaultValue: string;
   value: string;
-  onChange?: (e: SelectChangeEvent) => void;
+  onChange: (e: SelectChangeEvent) => void;
 };
 
 export const FiltersSelect: FC<FiltersProps> = ({ children, defaultValue, onChange, value }) => {

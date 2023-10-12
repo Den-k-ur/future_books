@@ -11,21 +11,16 @@ export const useDetailedPage = () => {
 
   const { id } = useParams();
   useEffect(() => {
-    console.log(book);
     if (!book) {
       dispatch(BooksServices.getDetailBook({ id: id as string }));
     }
   }, []);
 
-  const authors = book?.authors?.join(', ');
-  const img = book?.imageLinks?.thumbnail;
-  const title = book?.title;
-  const categories = book?.categories;
-  const description = book?.description;
+  const { authors, imageLinks, title, description, categories } = book || {};
 
   return {
-    authors,
-    img,
+    authors: authors?.join(', '),
+    img: imageLinks?.thumbnail,
     title,
     categories,
     description,
