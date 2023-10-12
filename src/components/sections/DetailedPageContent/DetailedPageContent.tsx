@@ -15,11 +15,15 @@ import { useSelector } from 'react-redux';
 import { booksSelectors } from 'src/store/books';
 import CircularProgress from '@mui/material/CircularProgress';
 import { BackToMainButton } from 'src/components/base/BackToMainButton';
+import { AlertError } from 'src/components/base/AlertError';
 
 export const DetailedPageContent: FC = () => {
   const { authors, categories, description, img, title } = useDetailedPage();
 
   const isLoading = useSelector(booksSelectors.detailBookIsLoading);
+
+  const hasError = useSelector(booksSelectors.detailBookInfoIsError);
+  const error = useSelector(booksSelectors.detailBookInfoError);
 
   return (
     <Box sx={DetailedPageContentContainer}>
@@ -29,6 +33,7 @@ export const DetailedPageContent: FC = () => {
         </Box>
       ) : (
         <>
+          {hasError && <AlertError severity="error">{error}</AlertError>}
           <Box>
             <img src={img} alt="" />
           </Box>

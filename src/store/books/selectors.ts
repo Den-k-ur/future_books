@@ -30,3 +30,4 @@ export const detailBookInfo = createSelector(detalBookRoot, (data) => data?.volu
 export const detailBookId = createSelector(detailBookInfo, (data) => data?.id);
 export const detailBookIsLoading = createSelector(root, (data) => data.detailBookInfo.isLoading);
 export const detailBookInfoIsError = createSelector(root, (data) => data.detailBookInfo.isError);
+export const detailBookInfoError = createSelector(root, (data) => data.detailBookInfo.error);
