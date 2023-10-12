@@ -81,7 +81,7 @@ export const useHeader = () => {
         defaultValue: 'relevance',
       },
     ];
-  }, [BOOKS_CATEGORIES, BOOKS_FILTERS, subject, filter]);
+  }, [subject, filter]);
 
   return {
     handleChangeSearchText,

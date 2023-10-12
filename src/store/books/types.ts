@@ -2,7 +2,7 @@ import { BookInfo, BooksDTO } from 'src/models/books.dto';
 
 export type BooksState = {
   hasError: boolean;
-  error: string | null;
+  error: Nullable<string>;
   isSuccess: boolean;
   isLoading: boolean;
   booksInfo: BooksDTO;
@@ -14,7 +14,7 @@ export type BooksState = {
   page: number;
   moreButtons: {
     hasError: boolean;
-    error: string | null;
+    error: Nullable<string>;
     isSuccess: boolean;
     isLoading: boolean;
   };
