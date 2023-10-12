@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 import api from 'src/api';
 import { API_KEY, BASE_URL } from 'src/api/constants';
 import { BookInfo, BooksDTO } from 'src/models/books.dto';
+import { returnError } from 'src/utils/returnError';
 
 type searchParams = {
   subject: string;
@@ -26,28 +27,21 @@ export const BooksServices = {
         );
         return response.data;
       } catch (err) {
-        const error = err as AxiosError;
-        if (!error.response) {
-          throw err;
-        }
-        return rejectWithValue(error.response);
+        return returnError(err, rejectWithValue);
       }
     },
   ),
   getMoreBooks: createAsyncThunk<BooksDTO, searchParams>(
     'getMoreBooks',
     async (values, { rejectWithValue }) => {
+      const sub = values.subject && values.subject !== 'All' ? `+subject:${values.subject}` : '';
       try {
         const response = await api.get(
-          `${BASE_URL}?key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&orderBy=${values.sort}&maxResults=30&startIndex=${values.startIndex}`,
+          `${BASE_URL}?key=${API_KEY}&q=${values.searchText}${sub}&orderBy=${values.sort}&maxResults=30&startIndex=${values.startIndex}`,
         );
         return response.data;
       } catch (err) {
-        const error = err as AxiosError;
-        if (!error.response) {
-          throw err;
-        }
-        return rejectWithValue(error.response);
+        return returnError(err, rejectWithValue);
       }
     },
   ),
@@ -58,11 +52,7 @@ export const BooksServices = {
         const response = await api.get(`${BASE_URL}/${values.id}?key=${API_KEY}`);
         return response.data;
       } catch (err) {
-        const error = err as AxiosError;
-        if (!error.response) {
-          throw err;
-        }
-        return rejectWithValue(error.response);
+        return returnError(err, rejectWithValue);
       }
     },
   ),
