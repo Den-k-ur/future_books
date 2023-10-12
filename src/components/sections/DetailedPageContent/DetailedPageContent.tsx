@@ -14,7 +14,7 @@ import {
 import { useSelector } from 'react-redux';
 import { booksSelectors } from 'src/store/books';
 import CircularProgress from '@mui/material/CircularProgress';
-import { BackButton } from 'src/components/base/BackButton';
+import { BackToMainButton } from 'src/components/base/BackToMainButton';
 
 export const DetailedPageContent: FC = () => {
   const { authors, categories, description, img, title } = useDetailedPage();
@@ -41,7 +41,7 @@ export const DetailedPageContent: FC = () => {
               {authors}
             </Typography>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{description}</ReactMarkdown>
-            <BackButton />
+            <BackToMainButton />
           </Box>
         </>
       )}

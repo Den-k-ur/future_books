@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { BooksServices, booksActions, booksSelectors } from 'src/store/books';
 import { useAppDispatch } from 'src/store/hooks';
 
-export const useBackButton = () => {
+export const useBackToMainButton = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const searchText = useSelector(booksSelectors.searchText);
   const filter = useSelector(booksSelectors.filter);
   const subject = useSelector(booksSelectors.subject);
-  const handleBack = useCallback(() => {
+  const handleBackToMain = useCallback(() => {
     dispatch(booksActions.setInitialStateDetailBookInfo());
     dispatch(
       BooksServices.getBooksInfo({
@@ -24,6 +24,6 @@ export const useBackButton = () => {
   }, []);
 
   return {
-    handleBack,
+    handleBackToMain,
   };
 };

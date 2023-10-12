@@ -1,9 +1,12 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { Layout } from 'src/components/environment';
 import { ROUTERS } from './constants';
+import globalRouter from 'src/utils/globalRouter';
 
 export const AppRoute = () => {
+  const navigate = useNavigate();
+  globalRouter.navigate = navigate;
   return (
     <Layout>
       <Routes>

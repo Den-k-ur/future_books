@@ -30,14 +30,13 @@ export const useMainPage = () => {
     dispatch(booksActions.setPage(currentPage + 1));
   }, [currentPage, searchText, filter, subject, startIndex]);
 
-  const handleGetDetailInfo = useCallback((id: string) => {
-    dispatch(BooksServices.getDetailBook({ id: id }));
+  const handleRoteToDetailInfo = useCallback((id: string) => {
     navigate(`/book/${id}`);
   }, []);
 
   return {
     handleGetMoreBooks,
     possibleCount,
-    handleGetDetailInfo,
+    handleRoteToDetailInfo,
   };
 };
