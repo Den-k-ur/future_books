@@ -19,9 +19,10 @@ export const BooksServices = {
   getBooksInfo: createAsyncThunk<BooksDTO, Omit<searchParams, 'startIndex'>>(
     'books',
     async (values, { rejectWithValue }) => {
+      const sub = values.subject && values.subject !== 'All' ? `+subject:${values.subject}` : '';
       try {
         const response = await api.get(
-          `${BASE_URL}?key=${API_KEY}&q=${values.searchText}+subject:${values.subject}&orderBy=${values.sort}&maxResults=30`,
+          `${BASE_URL}?key=${API_KEY}&q=${values.searchText}${sub}&orderBy=${values.sort}&maxResults=30`,
         );
         return response.data;
       } catch (err) {
